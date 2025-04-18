@@ -15,6 +15,7 @@ import {
   ShoppingCart,
 } from "lucide-react";
 import { createWorker } from "tesseract.js";
+import Footer from "./Footer";
 
 interface Item {
   name: string;
@@ -168,7 +169,7 @@ function App() {
   const handleManually = () => {
     const newItems: Item[] = [];
     newItems.push({
-      name: "Item 1",
+      name: "Enter Item Name",
       price: 0,
       splitBetween: [],
     });
@@ -217,7 +218,7 @@ function App() {
   const addItem = () => {
     const newItems = [...items];
     newItems.push({
-      name: "Enter a name",
+      name: "Enter Item Name",
       price: 0,
       splitBetween: [],
     });
@@ -315,7 +316,7 @@ function App() {
                     : "bg-green-600 hover:bg-green-700"
                 }`}
               >
-                Continue to Receipt Splitting
+                Start Splitting
               </button>
               {people.length < 2 && (
                 <p className="text-sm text-gray-500 mt-2 text-center">
@@ -325,6 +326,7 @@ function App() {
             </div>
           </div>
         </div>
+        {<Footer />}
       </div>
     );
   }
@@ -335,9 +337,7 @@ function App() {
         <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
           <div className="flex items-center justify-center mb-6">
             <Receipt className="w-8 h-8 text-blue-600 mr-2" />
-            <h1 className="text-2xl font-bold text-gray-800">
-              Receipt Splitter
-            </h1>
+            <h1 className="text-2xl font-bold text-gray-800">SplitMate</h1>
           </div>
           {items.length < 1 && (
             <>
@@ -354,7 +354,7 @@ function App() {
                     </>
                   ) : (
                     <>
-                      <Upload className="w-5 h-5 mr-2" /> Upload Receipt
+                      <Upload className="w-5 h-5 mr-2" /> Upload a Receipt
                     </>
                   )}
                 </button>
@@ -372,7 +372,7 @@ function App() {
                   className="w-full flex items-center justify-center px-4 py-2 border bg-blue-600 text-white rounded-md shadow-sm text-sm font-medium hover:bg-blue-500"
                   onClick={handleManually}
                 >
-                  Enter Manually
+                  Add Items Manually
                 </button>
               </div>
             </>
@@ -380,7 +380,7 @@ function App() {
           {items.length > 0 && (
             <div className="space-y-6">
               <h2 className="text-lg font-semibold text-gray-800 mb-4">
-                Items to Split
+                Receipt Items
               </h2>
               {items.map((item, index) => (
                 <div key={index} className="bg-gray-50 p-4 rounded-md">
@@ -476,7 +476,7 @@ function App() {
                   className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center"
                 >
                   <ShoppingCart className="w-5 h-5 mr-1" />
-                  Add Item
+                  Add New Item
                 </button>
               </div>
               {totals.length > 0 && (
